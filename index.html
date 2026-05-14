@@ -45,27 +45,54 @@
             z-index: 2;
         }
 
-        /* 游戏初始问题文字 */
-        .game-question {
+        /* ======================
+           🎯 初始界面文字（和海报1:1对齐）
+           ====================== */
+        /* 顶部中文大标题 */
+        .start-title-cn {
             position: absolute;
             left: 50%;
-            top: 20%;
+            top: 18%;
             transform: translate(-50%, -50%);
-            font-size: 32px;
-            color: #222;
+            font-size: 60px;
+            font-weight: bold;
+            color: #000;
             text-align: center;
-            line-height: 1.5;
+            transition: all 0.5s ease;
+        }
+
+        /* 顶部中文副标题 */
+        .start-subtitle-cn {
+            position: absolute;
+            left: 50%;
+            top: 30%;
+            transform: translate(-50%, -50%);
+            font-size: 20px;
+            color: #000;
+            text-align: center;
+            transition: all 0.5s ease;
+        }
+
+        /* 顶部英文副标题 */
+        .start-subtitle-en {
+            position: absolute;
+            left: 50%;
+            top: 36%;
+            transform: translate(-50%, -50%);
+            font-size: 16px;
+            color: #000;
+            text-align: center;
             transition: all 0.5s ease;
         }
 
         /* ======================
-           🎯 结束画面排版（和甲龙示例1:1对齐）
+           🎯 结束画面排版（和海报1:1对齐）
            ====================== */
         /* 顶部中文大标题 */
         .win-title-cn {
             position: absolute;
             left: 50%;
-            top: 18%; /* 整体下移 */
+            top: 18%;
             transform: translate(-50%, -50%);
             font-size: 60px;
             font-weight: bold;
@@ -79,7 +106,7 @@
         .win-subtitle-cn {
             position: absolute;
             left: 50%;
-            top: 30%; /* 整体下移 */
+            top: 30%;
             transform: translate(-50%, -50%);
             font-size: 20px;
             color: #000;
@@ -93,7 +120,7 @@
         .win-subtitle-en {
             position: absolute;
             left: 50%;
-            top: 36%; /* 整体下移 */
+            top: 36%;
             transform: translate(-50%, -50%);
             font-size: 16px;
             color: #000;
@@ -107,12 +134,12 @@
         .win-english-title {
             position: absolute;
             left: 50%;
-            top: 50%; /* 整体下移 */
+            top: 58%;
             transform: translate(-50%, -50%);
             width: 90%;
             display: flex;
             justify-content: center;
-            align-items: flex-end; /* 🔥 底部对齐（核心修改） */
+            align-items: flex-end;
             font-size: 80px;
             font-weight: bold;
             color: #000;
@@ -121,10 +148,10 @@
             transition: all 0.8s ease;
         }
 
-        /* 🔥 英文中间插入的正确恐龙（可调整大小位置） */
+        /* 英文中间插入的正确恐龙 */
         .center-dino-img {
             position: relative;
-            width: 500px;
+            width: 450px;
             height: 400px;
             background: url('0.png') no-repeat center;
             background-size: contain;
@@ -137,7 +164,7 @@
         .win-description {
             position: absolute;
             left: 50%;
-            top: 85%; /* 整体下移 */
+            top: 88%;
             transform: translate(-50%, -50%);
             font-size: 14px;
             color: #000;
@@ -150,7 +177,7 @@
         }
 
         /* ======================
-           🎮 游戏选项样式（保持不变）
+           🎮 游戏选项样式
            ====================== */
         .dino-options {
             position: absolute;
@@ -179,7 +206,7 @@
         .dino-option.wrong-select {
             border: none;
             transform: scale(3);
-            top: -60px;
+            top: -120px;
             left: 0px;
         }
 
@@ -216,12 +243,14 @@
     <div class="game-container" id="mainBox">
         <div class="top-branch"></div>
 
-        <!-- 游戏初始问题 -->
-        <div class="game-question" id="question">
-            谁能吃到高处树叶？
+        <!-- 🔥 初始界面文字（和海报1:1完全对齐） -->
+        <div class="start-title-cn" id="startTitleCn">腕龙</div>
+        <div class="start-subtitle-cn" id="startSubtitleCn">脖子最长、体型最大的恐龙</div>
+        <div class="start-subtitle-en" id="startSubtitleEn">
+            The dinosaurs with the longest necks and largest body sizes
         </div>
 
-        <!-- 胜利画面（全部在缩小界面上） -->
+        <!-- 胜利画面 -->
         <div class="win-title-cn" id="winTitleCn">腕龙</div>
         <div class="win-subtitle-cn" id="winSubtitleCn">脖子最长、体型最大的恐龙</div>
         <div class="win-subtitle-en" id="winSubtitleEn">
@@ -252,7 +281,9 @@
         const mainBox = document.getElementById('mainBox');
         const options = document.querySelectorAll('.dino-option');
         const optionsBox = document.getElementById('optionsBox');
-        const question = document.getElementById('question');
+        const startTitleCn = document.getElementById('startTitleCn');
+        const startSubtitleCn = document.getElementById('startSubtitleCn');
+        const startSubtitleEn = document.getElementById('startSubtitleEn');
         const winTitleCn = document.getElementById('winTitleCn');
         const winSubtitleCn = document.getElementById('winSubtitleCn');
         const winSubtitleEn = document.getElementById('winSubtitleEn');
@@ -279,8 +310,12 @@
             // 恢复初始界面
             optionsBox.style.opacity = 1;
             optionsBox.style.visibility = 'visible';
-            question.style.opacity = 1;
-            question.style.visibility = 'visible';
+            startTitleCn.style.opacity = 1;
+            startTitleCn.style.visibility = 'visible';
+            startSubtitleCn.style.opacity = 1;
+            startSubtitleCn.style.visibility = 'visible';
+            startSubtitleEn.style.opacity = 1;
+            startSubtitleEn.style.visibility = 'visible';
             
             options.forEach(opt => {
                 opt.classList.remove('wrong-select');
@@ -310,8 +345,12 @@
                     setTimeout(() => {
                         optionsBox.style.opacity = 0;
                         optionsBox.style.visibility = 'hidden';
-                        question.style.opacity = 0;
-                        question.style.visibility = 'hidden';
+                        startTitleCn.style.opacity = 0;
+                        startTitleCn.style.visibility = 'hidden';
+                        startSubtitleCn.style.opacity = 0;
+                        startSubtitleCn.style.visibility = 'hidden';
+                        startSubtitleEn.style.opacity = 0;
+                        startSubtitleEn.style.visibility = 'hidden';
                     }, 800);
 
                     // 显示结束画面（在缩小界面上）
