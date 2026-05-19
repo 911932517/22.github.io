@@ -278,6 +278,12 @@
     </div>
 
     <script>
+        // ======================
+        // 🔊 音效配置（可自行更换音频路径）
+        // ======================
+        const correctAudio = new Audio('dd.mp3');  // 正确音效
+        const wrongAudio = new Audio('cc.mp3');      // 错误音效
+
         const mainBox = document.getElementById('mainBox');
         const options = document.querySelectorAll('.dino-option');
         const optionsBox = document.getElementById('optionsBox');
@@ -333,6 +339,8 @@
                 });
 
                 if (option.dataset.type === 'right') {
+                    // 播放正确音效
+                    correctAudio.play();
                     option.classList.add('right-select');
                     hasAnswered = true;
 
@@ -360,6 +368,8 @@
                     setTimeout(() => { winEnglishTitle.style.visibility = 'visible'; winEnglishTitle.style.opacity = 1; }, 1900);
                     setTimeout(() => { winDescription.style.visibility = 'visible'; winDescription.style.opacity = 1; }, 2200);
                 } else {
+                    // 播放错误音效
+                    wrongAudio.play();
                     option.classList.add('wrong-select');
                 }
             });
